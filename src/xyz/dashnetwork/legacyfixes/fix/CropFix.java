@@ -23,23 +23,25 @@ public final class CropFix implements Listener {
             breakAbove(event.getClickedBlock());
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onEntityInteract(EntityInteractEvent event) {
         Block block = event.getBlock();
 
-        if (block.getType() == Material.SOIL)
+        if (block.getTypeId() == 60)
             breakAbove(block);
     }
 
+    @SuppressWarnings("deprecation")
     private void breakAbove(Block block) {
         Block crop = block.getRelative(BlockFace.UP);
 
-        switch (crop.getType()) {
-            case CROPS:
-            case CARROT:
-            case POTATO:
-            case MELON_STEM:
-            case PUMPKIN_STEM:
+        switch (crop.getTypeId()) {
+            case 59: // minecraft:wheat
+            case 104: // minecraft:pumpkin_stem
+            case 105: // minecraft:melon_stem
+            case 141: // minecraft:carrots
+            case 142: // minecraft:potatoes
                 crop.breakNaturally();
         }
     }

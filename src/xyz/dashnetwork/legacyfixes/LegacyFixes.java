@@ -9,6 +9,7 @@ public final class LegacyFixes extends JavaPlugin {
     public void onEnable() {
         new ChatFix(this);
         new CropFix(this);
+        new EndFix(this);
         new OcelotFix(this);
         new PlantFix(this);
         new WolfFix(this);

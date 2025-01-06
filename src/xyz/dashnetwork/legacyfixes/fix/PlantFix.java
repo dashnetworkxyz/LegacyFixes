@@ -45,17 +45,23 @@ public final class PlantFix implements Listener {
         breakAbove(event.getBlock().getRelative(event.getDirection().getOppositeFace(), 2));
     }
 
+    @SuppressWarnings("deprecation")
     private void breakAbove(Block block) {
         Block above = block.getRelative(BlockFace.UP);
 
-        switch (above.getType()) {
-            case SAPLING:
-            case LONG_GRASS:
-            case DEAD_BUSH:
-            case YELLOW_FLOWER:
-            case RED_ROSE:
-            case BROWN_MUSHROOM:
-            case RED_MUSHROOM:
+        switch (above.getTypeId()) {
+            case 6: // minecraft:sapling
+            case 31: // minecraft:tallgrass
+            case 32: // minecraft:deadbush
+            case 37: // minecraft:yellow_flower
+            case 38: // minecraft:red_flower
+            case 39: // minecraft:brown_mushroom
+            case 40: // minecraft:red_mushroom
+            case 59: // minecraft:wheat
+            case 104: // minecraft:pumpkin_stem
+            case 105: // minecraft:melon_stem
+            case 141: // minecraft:carrots
+            case 142: // minecraft:potatoes
                 above.breakNaturally();
         }
     }
