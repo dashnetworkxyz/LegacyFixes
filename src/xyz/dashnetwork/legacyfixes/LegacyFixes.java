@@ -12,6 +12,7 @@ public final class LegacyFixes extends JavaPlugin {
         new EndFix(this);
         new OcelotFix(this);
         new PlantFix(this);
+        new PortalFix(this);
         new WolfFix(this);
     }
 
