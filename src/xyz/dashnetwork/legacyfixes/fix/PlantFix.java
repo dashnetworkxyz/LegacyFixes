@@ -6,6 +6,9 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
+import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
@@ -18,6 +21,11 @@ public final class PlantFix implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        breakAbove(event.getBlock());
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
         breakAbove(event.getBlock());
     }
 
@@ -45,6 +53,11 @@ public final class PlantFix implements Listener {
         breakAbove(event.getBlock().getRelative(event.getDirection().getOppositeFace(), 2));
     }
 
+    @EventHandler
+    public void onPlayerBucketFill(PlayerBucketFillEvent event) {
+        breakAbove(event.getBlockClicked().getRelative(event.getBlockFace().getOppositeFace()));
+    }
+
     @SuppressWarnings("deprecation")
     private void breakAbove(Block block) {
         Block above = block.getRelative(BlockFace.UP);
@@ -60,6 +73,7 @@ public final class PlantFix implements Listener {
             case 59: // minecraft:wheat
             case 104: // minecraft:pumpkin_stem
             case 105: // minecraft:melon_stem
+            case 111: // minecraft:waterlily
             case 141: // minecraft:carrots
             case 142: // minecraft:potatoes
                 above.breakNaturally();
